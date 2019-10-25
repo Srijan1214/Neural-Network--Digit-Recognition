@@ -72,7 +72,7 @@ void read_mnist(){
 		//cout<<n_cols<<endl;
 		//cout<<number_of_images<<endl;
 		vector<double> inputs;
-		neural_network_obj.set_number_for_SDC(100);
+		neural_network_obj.set_number_for_SDC(10);
 		for(int i=0;i<number_of_images;++i){
 			for(int r=0;r<n_rows;++r){
 				for(int c=0;c<n_cols;++c){
@@ -86,7 +86,7 @@ void read_mnist(){
 			//cout<<endl;
 			neural_network_obj.set_cur_true_result(number_list[m_counter++]);
 			neural_network_obj.take_input_and_start_session(inputs);
-			if((i+1)%100==0){
+			if((i+1)%10==0){
 				neural_network_obj.show_output_layer();
 				neural_network_obj.show_cost();
 				cout<<"-------Number of train inputs in this epoc: "<<i+1<<"--"<<number_list[m_counter]<<endl<<endl;

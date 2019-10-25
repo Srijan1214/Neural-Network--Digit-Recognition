@@ -54,13 +54,24 @@ void neural_network::calculate_output_layer_weights_gradients(){
 }
 
 void neural_network::calculate_second_layer_weights_gradients(){
+	//double temp;
+	//for(size_t i = 0; i<m_second_layer_weights_gradients.size(); i++){
+	//	for(size_t j = 0; j<m_second_layer_weights_gradients[0].size(); j++){
+	//		//m_second_layer_weights_gradients[i][j]=sigmoid(m_second_layer_neurons[i]->get_z())*(1-sigmoid(m_second_layer_neurons[i]->get_z()))*
+	//			//(m_first_layer_acitvations[j])*m_second_layer_activation_gradients[i];
+	//		temp=sigmoid(m_second_layer_neurons[i]->get_z())*(1-sigmoid(m_second_layer_neurons[i]->get_z()))*
+	//			(m_first_layer_acitvations[j])*m_second_layer_activation_gradients[i];
+	//		m_second_layer_weights_gradients[i][j]+=temp;
+	//	}
+	//}
+
 	double temp;
 	for(size_t i = 0; i<m_second_layer_weights_gradients.size(); i++){
 		for(size_t j = 0; j<m_second_layer_weights_gradients[0].size(); j++){
 			//m_second_layer_weights_gradients[i][j]=sigmoid(m_second_layer_neurons[i]->get_z())*(1-sigmoid(m_second_layer_neurons[i]->get_z()))*
 				//(m_first_layer_acitvations[j])*m_second_layer_activation_gradients[i];
 			temp=sigmoid(m_second_layer_neurons[i]->get_z())*(1-sigmoid(m_second_layer_neurons[i]->get_z()))*
-				(m_first_layer_acitvations[j])*m_second_layer_activation_gradients[i];
+				(m_input_layer_acitvations[j])*m_second_layer_activation_gradients[i];
 			m_second_layer_weights_gradients[i][j]+=temp;
 		}
 	}
@@ -198,13 +209,13 @@ void neural_network::take_input_and_start_session(std::vector<double>& inputs){
 	m_counter++;
 	m_input_layer_acitvations=inputs;
 
-	for(size_t i=0;i<m_first_layer_neurons.size();i++){
+	/*for(size_t i=0;i<m_first_layer_neurons.size();i++){
 		m_first_layer_neurons[i]->reinitialize_activation(m_first_layer_weights[i],inputs);
 		m_first_layer_acitvations[i]=m_first_layer_neurons[i]->get_activation_value();
-	}	
+	}*/	
 
 	for(size_t i=0;i<m_second_layer_neurons.size();i++){
-		m_second_layer_neurons[i]->reinitialize_activation(m_second_layer_weights[i],m_first_layer_acitvations);
+		m_second_layer_neurons[i]->reinitialize_activation(m_second_layer_weights[i],inputs);
 		m_second_layer_acitvations[i]=m_second_layer_neurons[i]->get_activation_value();
 	}
 
@@ -286,52 +297,52 @@ void neural_network::initialize_random_bias(){
 
 void neural_network::set_layer_size(size_t size){
 	m_first_layer_neurons.resize(size,0);
-	m_second_layer_neurons.resize(size,0);
+	m_second_layer_neurons.resize(30,0);
 	m_output_layer_neurons.resize(10,0);
 
 	m_input_layer_acitvations.resize(size,0);
 	m_first_layer_acitvations.resize(size,0);
-	m_second_layer_acitvations.resize(size,0);
+	m_second_layer_acitvations.resize(30,0);
 	m_output_layer_acitvations.resize(10,0);
 
 	m_first_layer_weights.resize(size);
-	m_second_layer_weights.resize(size);
+	m_second_layer_weights.resize(30);
 	m_output_layer_weights.resize(10);
 
 	for(size_t i=0;i<size;i++){
 		m_first_layer_weights[i].resize(size);
 	}
 
-	for(size_t i=0;i<size;i++){
+	for(size_t i=0;i<30;i++){
 		m_second_layer_weights[i].resize(size);
 	}
 
 	for(size_t i=0;i<10;i++){
-		m_output_layer_weights[i].resize(size);
+		m_output_layer_weights[i].resize(30);
 	}
 
 	m_first_layer_weights_gradients.resize(size);
-	m_second_layer_weights_gradients.resize(size);
+	m_second_layer_weights_gradients.resize(30);
 	m_output_layer_weights_gradients.resize(10);
 	
 	for(size_t i=0;i<size;i++){
 		m_first_layer_weights_gradients[i].resize(size,0);
 	}
 
-	for(size_t i=0;i<size;i++){
+	for(size_t i=0;i<30;i++){
 		m_second_layer_weights_gradients[i].resize(size,0);
 	}
 
 	for(size_t i=0;i<10;i++){
-		m_output_layer_weights_gradients[i].resize(size,0);
+		m_output_layer_weights_gradients[i].resize(30,0);
 	}
 
 	m_first_layer_bias_gradients.resize(size,0);
-	m_second_layer_bias_gradients.resize(size,0);
+	m_second_layer_bias_gradients.resize(30,0);
 	m_output_layer_bias_gradients.resize(10,0);
 
 	m_first_layer_activation_gradients.resize(size);
-	m_second_layer_activation_gradients.resize(size);
+	m_second_layer_activation_gradients.resize(30);
 
 }
 
@@ -361,13 +372,14 @@ void neural_network::prapagate_backwards(){
 		change_second_layer_weights();
 		change_second_layer_bias();
 	}
-	calculate_first_layer_activation_gradients();
+
+	/*calculate_first_layer_activation_gradients();
 	calculate_first_layer_weights_gradients();
 	calculate_first_layer_bias_gradients();
 	if(m_counter%m_number_for_SDC==0){
 		change_first_layer_weights();
 		change_first_layer_bias();
-	}
+	}*/
 
 
 }
@@ -384,7 +396,7 @@ void neural_network::create_neuron_objects(){
 	}
 
 	for(size_t i=0;i<m_second_layer_neurons.size();i++){
-		m_second_layer_neurons[i]=new neuron(m_second_layer_weights[i],m_second_layer_acitvations);
+		m_second_layer_neurons[i]=new neuron(m_second_layer_weights[i],m_input_layer_acitvations);
 	}
 
 	for(size_t i=0;i<m_output_layer_neurons.size();i++){
