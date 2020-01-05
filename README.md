@@ -4,4 +4,4 @@ A digit recognition neural network that takes in a the MNIST training data of gr
 2 hidden layers.
 
 Output
-![Output Image]
+![Output Image](output.png)
