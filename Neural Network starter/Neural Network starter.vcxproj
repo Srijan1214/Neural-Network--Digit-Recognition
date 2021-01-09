@@ -115,13 +115,20 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="constants.h" />
+    <ClInclude Include="mathematical_functions.h" />
+    <ClInclude Include="random_engine.h" />
     <ClInclude Include="neuron.h" />
     <ClInclude Include="neural_network.h" />
+    <ClInclude Include="mnist_parser.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="mnist_parser.cpp" />
+    <ClCompile Include="random_engine" />
+    <ClCompile Include="mathematical_functions.cpp" />
     <ClCompile Include="neural_network.cpp" />
     <ClCompile Include="neuron.cpp" />
-    <ClCompile Include="starter.cpp" />
+    <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="t10k-images.idx3-ubyte" />
