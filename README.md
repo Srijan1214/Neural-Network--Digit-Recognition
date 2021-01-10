@@ -129,5 +129,8 @@ Now that we have `dC/da`, calculating `dC/dw` and `dC/db` is just like for the s
 ## Acknowledgment
 I loved Michael Nielsen's excellent book "Neural Networks and Deep Learning" with the information of everything in how neural networks work. I built this software by learning from that book. link: http://neuralnetworksanddeeplearning.com/
 
+This playlist by 3Blue1Brom was also very helpful<br>
+https://www.youtube.com/playlist?list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi
+
 I got the dataset from here:
 http://yann.lecun.com/exdb/mnist/
