@@ -10,7 +10,7 @@
     + [dC/dw](#dc-dw)
     + [dC/db](#dc-db)
     + [What Changes When Having Multiple Neurons Per Layer](#what-changes-when-having-multiple-neurons-per-layer)
-  * [Acknowledgment](#acknowledgment)
+- [Acknowledgment](#acknowledgment)
 # Introduction
 This is a neural network I wrote to recognize the `MNIST` handwritten digits dataset. This was my first attempt in making a neural network and I primarily made this program to aide in my understanding of how all of this works.
 
@@ -126,7 +126,7 @@ But in this case, we have multiple neurons in successive layers. Therefore, just
 
 Now that we have `dC/da`, calculating `dC/dw` and `dC/db` is just like for the simple network.
 
-## Acknowledgment
+# Acknowledgment
 I loved Michael Nielsen's excellent book "Neural Networks and Deep Learning" with the information of everything in how neural networks work. I built this software by learning from that book. link: http://neuralnetworksanddeeplearning.com/
 
 This playlist by 3Blue1Brom was also very helpful<br>
