@@ -1,3 +1,16 @@
+# Table Of Contents
+- [Introduction](#introduction)
+- [How To Compile And Run](#how-to-compile-and-run)
+- [Checking The Output Files](#checking-the-output-files)
+- [Program Output](#program-output)
+- [Theory Behind The Neural Network](#theory-behind-the-neural-network)
+  * [Gradient Descent](#gradient-descent)
+  * [Stochastic Gradient Descent](#stochastic-gradient-descent)
+  * [How To Find The Values Of The Gradient](#how-to-find-the-values-of-the-gradient)
+    + [dC/dw](#dc-dw)
+    + [dC/db](#dc-db)
+    + [What Changes When Having Multiple Neurons Per Layer](#what-changes-when-having-multiple-neurons-per-layer)
+  * [Acknowledgment](#acknowledgment)
 # Introduction
 This is a neural network I wrote to recognize the `MNIST` handwritten digits dataset. This was my first attempt in making a neural network and I primarily made this program to aide in my understanding of how all of this works.
 
