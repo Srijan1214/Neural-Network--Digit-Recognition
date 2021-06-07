@@ -42,7 +42,7 @@ I.E `-<df/dx, df/dy>` gives the path of the steepest descent (this is what we wa
 - Now repeat this continuously. Eventually, you will come to the point that the values of x and y do not change by that much anymore. 
 - This is the point of a local minimum and you will notice that among all the values of x and y that you have gotten along the way, the final pair of x and y will give the lowest value of `f(x, y)`
 
-This particular algorithm is called gradient descent. This will work for a function taht takes in any number of arguments, not just 2 like in the case for `f(x, y)`.
+This particular algorithm is called gradient descent. This will work for a function that takes in any number of arguments, not just 2 like in the case for `f(x, y)`.
 
 In the case of our neural network, we have a particular cost function that takes in all the weights and biases as the parameters. The goal of learning is to adjust these parameters to exactly the right value so that the cost function is minimized for our training data.
 
